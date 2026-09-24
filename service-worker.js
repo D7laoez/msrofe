@@ -70,3 +70,63 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+
+// Background Sync for deferred cloud updates
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'sync-expenses') {
+    event.waitUntil(
+      // Notify clients to trigger cloud sync
+      self.clients.matchAll().then((clients) => {
+        clients.forEach((client) => client.postMessage({ type: 'TRIGGER_BACKGROUND_SYNC' }));
+      })
+    );
+  }
+});
+
+// Periodic Background Sync for daily summary updates
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'get-daily-expenses') {
+    event.waitUntil(
+      self.clients.matchAll().then((clients) => {
+        clients.forEach((client) => client.postMessage({ type: 'TRIGGER_PERIODIC_SYNC' }));
+      })
+    );
+  }
+});
+
+// Web Push Notifications
+self.addEventListener('push', (event) => {
+  const data = event.data ? event.data.json() : {};
+  const title = data.title || 'مصروفي — Masroofi';
+  const options = {
+    body: data.body || 'تم تحديث بياناتك بنجاح.',
+    icon: './icons/icon-192.png',
+    badge: './icons/icon-192.png',
+    dir: 'rtl',
+    lang: 'ar',
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: 1
+    }
+  };
+
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+// Notification Click Handler
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
+      for (const client of clientList) {
+        if (client.url.includes('index.html') && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      if (self.clients.openWindow) {
+        return self.clients.openWindow('./index.html');
+      }
+    })
+  );
+});

@@ -57,6 +57,47 @@
       "label": "لوحة تقارير وإحصائيات المصاريف"
     }
   ],
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  "edge_side_panel": {
+    "preferred_width": 420
+  },
+  "note_taking": {
+    "new_note_url": "./index.html?action=add"
+  },
+  "file_handlers": [
+    {
+      "action": "./index.html",
+      "name": "Masroofi Backup File",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ],
+      "accept": {
+        "application/json": [".json"]
+      }
+    }
+  ],
+  "share_target": {
+    "action": "./index.html",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+masroofi",
+      "url": "./index.html?action=%s"
+    }
+  ],
   "shortcuts": [
     {
       "name": "إضافة عملية جديدة",
