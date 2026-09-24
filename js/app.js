@@ -108,7 +108,7 @@ class MasroofiApp {
     this.googleUser = JSON.parse(localStorage.getItem('masroofi_google_user') || 'null');
     this.googleTokenClient = null;
     this.syncDebounceTimer = null;
-    this.defaultGoogleClientId = '1082572589083-d56j2h8j98o44v10a95l7j1d7s9j5v9k.apps.googleusercontent.com';
+    this.defaultGoogleClientId = '1080534388753-b0huenud45kkihd4qri5n1avnl4ceji2.apps.googleusercontent.com';
     
     this.initElements();
     this.initEventListeners();
@@ -167,10 +167,6 @@ class MasroofiApp {
     }
     if (googleModal && googleModal.classList.contains('open')) {
       this.closeGoogleSettingsModal();
-      return;
-    }
-    if (installModal && installModal.classList.contains('open')) {
-      this.closeInstallGuideModal();
       return;
     }
     if (catModal && catModal.classList.contains('open')) {
@@ -486,63 +482,13 @@ class MasroofiApp {
     });
   }
 
-  // Mobile PWA Service Worker & Install Banner
+  // Mobile PWA Service Worker Registration
   initPWA() {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./service-worker.js')
         .then(() => console.log('[Masroofi] Service Worker Registered'))
         .catch(err => console.warn('[Masroofi] SW error:', err));
     }
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      this.deferredInstallPrompt = e;
-      const installBanner = document.getElementById('pwa-install-banner');
-      if (installBanner) installBanner.classList.remove('hidden');
-    });
-
-    const triggerInstall = async () => {
-      this.vibrate(12);
-      if (this.deferredInstallPrompt) {
-        this.deferredInstallPrompt.prompt();
-        const { outcome } = await this.deferredInstallPrompt.userChoice;
-        if (outcome === 'accepted') {
-          this.showToast('تم تثبيت تطبيق مصروفي على جهازك بنجاح 📱🎉');
-          this.closeInstallGuideModal();
-        }
-        this.deferredInstallPrompt = null;
-        const installBanner = document.getElementById('pwa-install-banner');
-        if (installBanner) installBanner.classList.add('hidden');
-      } else {
-        // Show instructions for iOS Safari or manual install
-        this.openInstallGuideModal();
-      }
-    };
-
-    const installActionBtn = document.getElementById('pwa-install-btn');
-    const directInstallBtn = document.getElementById('direct-install-btn');
-    const modalDoInstallBtn = document.getElementById('modal-do-install-btn');
-    const openInstallGuideBtn = document.getElementById('open-install-guide-btn');
-    const closeInstallModalBtn = document.getElementById('close-install-modal-btn');
-    const closeInstallModalBtn2 = document.getElementById('close-install-modal-btn2');
-
-    if (installActionBtn) installActionBtn.addEventListener('click', triggerInstall);
-    if (directInstallBtn) directInstallBtn.addEventListener('click', triggerInstall);
-    if (modalDoInstallBtn) modalDoInstallBtn.addEventListener('click', triggerInstall);
-    if (openInstallGuideBtn) openInstallGuideBtn.addEventListener('click', () => this.openInstallGuideModal());
-    if (closeInstallModalBtn) closeInstallModalBtn.addEventListener('click', () => this.closeInstallGuideModal());
-    if (closeInstallModalBtn2) closeInstallModalBtn2.addEventListener('click', () => this.closeInstallGuideModal());
-  }
-
-  openInstallGuideModal() {
-    this.vibrate(10);
-    const modal = document.getElementById('install-guide-modal');
-    if (modal) modal.classList.add('open');
-  }
-
-  closeInstallGuideModal() {
-    const modal = document.getElementById('install-guide-modal');
-    if (modal) modal.classList.remove('open');
   }
 
   // Mobile Swipe and Pull Gestures
@@ -586,7 +532,12 @@ class MasroofiApp {
   // GOOGLE ACCOUNT AUTH & GOOGLE DRIVE CLOUD ENGINE
   // ==========================================
   getGoogleClientId() {
-    return localStorage.getItem('masroofi_google_client_id') || this.defaultGoogleClientId;
+    const saved = localStorage.getItem('masroofi_google_client_id');
+    if (saved && !saved.startsWith('1080534388753')) {
+      localStorage.removeItem('masroofi_google_client_id');
+      return this.defaultGoogleClientId;
+    }
+    return saved || this.defaultGoogleClientId;
   }
 
   saveCustomGoogleClientId() {
