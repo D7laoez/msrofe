@@ -1,39 +1,88 @@
 {
+  "id": "iq.masroofi.app",
   "name": "Masroofi — مصروفي",
   "short_name": "مصروفي",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait-primary",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "portrait",
   "background_color": "#102542",
   "theme_color": "#102542",
   "description": "مدير المصاريف العراقي الذكي مع المزامنة السحابية عبر حساب Google",
+  "lang": "ar",
+  "dir": "rtl",
+  "categories": ["finance", "productivity", "utilities"],
+  "prefer_related_applications": false,
+  "related_applications": [],
   "icons": [
     {
-      "src": "https://lh3.googleusercontent.com/aida/AEtjO1VeKbkuvBzDHLv0TNHovllk8RusTgaXKvU3c9t-Ld1x8rrqOGYa_Qf_K_nTqvLDqu1bEM9UoJt0OifN5rVlFghoFE0Q1yMw67_ZDX_Lz99RvhQrK-cPN1IRa_wB4iVxVCOOjFjtMSQ20JrWh7lPazokw99eI8I1PVLFfhBLM1Oy_n-lo5sI14d3wcK7BHUDY2uk9iHIYy6OFfGzGAHq9ve2VbqMFFVPPo_9ewaNq0a1LjsO8qESwEePTM0",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "https://lh3.googleusercontent.com/aida/AEtjO1VeKbkuvBzDHLv0TNHovllk8RusTgaXKvU3c9t-Ld1x8rrqOGYa_Qf_K_nTqvLDqu1bEM9UoJt0OifN5rVlFghoFE0Q1yMw67_ZDX_Lz99RvhQrK-cPN1IRa_wB4iVxVCOOjFjtMSQ20JrWh7lPazokw99eI8I1PVLFfhBLM1Oy_n-lo5sI14d3wcK7BHUDY2uk9iHIYy6OFfGzGAHq9ve2VbqMFFVPPo_9ewaNq0a1LjsO8qESwEePTM0",
+      "src": "icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "icons/screenshot-mobile.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "شاشة التطبيق الرئيسية لإدارة المصاريف"
+    },
+    {
+      "src": "icons/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "لوحة تقارير وإحصائيات المصاريف"
     }
   ],
   "shortcuts": [
     {
-      "name": "إضافة مصروف سريع",
+      "name": "إضافة عملية جديدة",
       "short_name": "إضافة",
-      "description": "تسجيل عملية جديدة فوراً",
-      "url": "./index.html?action=add"
+      "description": "تسجيل مصروف أو دخل جديد فوراً",
+      "url": "./index.html?action=add",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     },
     {
-      "name": "تقرير المصاريف",
+      "name": "التقارير والإحصائيات",
       "short_name": "التقارير",
-      "description": "معاينة إحصائيات الشهر",
-      "url": "./index.html?screen=statistics"
+      "description": "معاينة تحليل المصاريف والميزانية",
+      "url": "./index.html?screen=statistics",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
