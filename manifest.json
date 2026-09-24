@@ -25,8 +25,23 @@
   "scope_extensions": [
     {
       "origin": "https://d7laoez.github.io"
+    },
+    {
+      "origin": "https://accounts.google.com"
     }
   ],
+  "tab_strip": {
+    "home_tab": {
+      "scope_patterns": [
+        {
+          "pathname": "/msrofe/*"
+        }
+      ]
+    },
+    "new_tab_button": {
+      "url": "./index.html?action=add"
+    }
+  },
   "widgets": [
     {
       "name": "مصروفي السريع",
