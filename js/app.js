@@ -657,6 +657,9 @@ class MasroofiApp {
             console.error('[Masroofi] Google OAuth Error:', tokenResponse);
             if (tokenResponse.error === 'popup_closed_by_user') {
               this.showToast('تم إغلاق نافذة تسجيل الدخول', 'warning');
+            } else if (tokenResponse.error === 'invalid_client' || tokenResponse.error === 'access_denied') {
+              this.showToast('يتطلب ربط Google Client ID خاص بنطاقك. جارِ التحويل للربط المباشر...', 'warning');
+              this.fallbackPromptSignIn();
             } else {
               this.showToast(`خطأ في مصادقة Google: ${tokenResponse.error_description || tokenResponse.error}`, 'error');
             }
@@ -666,7 +669,7 @@ class MasroofiApp {
         },
         error_callback: (error) => {
           console.warn('[Masroofi] Google OAuth Client Error:', error);
-          this.showToast('تعذر فتح نافذة Google. تأكد من السماح بالنوافذ المنبثقة', 'warning');
+          this.fallbackPromptSignIn();
         }
       });
       console.log('[Masroofi] Google Identity Services Token Client Initialized');
