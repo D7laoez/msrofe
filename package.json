@@ -1,0 +1,32 @@
+{
+  "name": "masroofi-mobile",
+  "version": "1.0.0",
+  "description": "تطبيق مصروفي — مدير المصاريف العراقي الذكي للموبايل",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "cap:add:android": "npx cap add android",
+    "cap:add:ios": "npx cap add ios",
+    "cap:sync": "npx cap sync",
+    "cap:open:android": "npx cap open android",
+    "cap:open:ios": "npx cap open ios",
+    "cap:run:android": "npx cap run android",
+    "cap:run:ios": "npx cap run ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/ios": "^6.0.0",
+    "@capacitor/status-bar": "^6.0.0",
+    "@capacitor/splash-screen": "^6.0.0",
+    "@capacitor/haptics": "^6.0.0",
+    "@capacitor/app": "^6.0.0",
+    "@capacitor/keyboard": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  },
+  "keywords": ["finance", "iraq", "expense-tracker", "mobile-app", "pwa", "capacitor"],
+  "author": "Masroofi",
+  "license": "MIT"
+}
