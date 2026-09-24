@@ -5,7 +5,7 @@
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "display_override": ["window-controls-overlay", "standalone"],
+  "display_override": ["window-controls-overlay", "tabbed", "standalone"],
   "orientation": "portrait",
   "background_color": "#102542",
   "theme_color": "#102542",
@@ -13,8 +13,44 @@
   "lang": "ar",
   "dir": "rtl",
   "categories": ["finance", "productivity", "utilities"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
   "prefer_related_applications": false,
-  "related_applications": [],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://d7laoez.github.io/msrofe/manifest.json",
+      "id": "iq.masroofi.app"
+    }
+  ],
+  "scope_extensions": [
+    {
+      "origin": "https://d7laoez.github.io"
+    }
+  ],
+  "widgets": [
+    {
+      "name": "مصروفي السريع",
+      "short_name": "مصروفي",
+      "description": "معاينة سريعة لملخص مصاريف اليوم والرصيد المتبقي",
+      "tag": "masroofi-widget",
+      "template": "widget-template",
+      "data": "widget-data",
+      "type": "application/json",
+      "screenshots": [
+        {
+          "src": "icons/screenshot-mobile.png",
+          "sizes": "540x720",
+          "label": "معاينة الويدجت السريع"
+        }
+      ],
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
   "icons": [
     {
       "src": "icons/icon-192.png",
